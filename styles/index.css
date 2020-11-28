@@ -1,7 +1,9 @@
 @tailwind base;
 
 /* Write your own custom base styles here */
-
+.avatar {
+    filter: grayscale(100%);
+}
 /* Start purging... */
 @tailwind components;
 /* Stop purging. */

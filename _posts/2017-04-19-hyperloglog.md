@@ -1,9 +1,13 @@
 ---
-layout: post
-title: "Using JSCS and jscs-fixer for Atom.io"
-date: "2015-04-15"
-author: Fábio Oliveira
-version: 1.0
+title: 'HyperLogLog'
+excerpt: 'A problem that arises in some applications, mainly in data intensive ones, is how to properly keep track of distinct elements in a finite set and is of particular importance in database systems.'
+coverImage: '/assets/blog/hyperloglog/cover.jpg'
+date: '2017-04-19T00:00:00.000Z'
+author:
+  name: 'Fábio Oliveira'
+  picture: '/assets/blog/authors/fabio.jpeg'
+ogImage:
+  url: '/assets/blog/hyperloglog/cover.jpg'
 ---
 A problem that arises in some applications, mainly in data intensive ones, is how to properly keep track of distinct elements in a finite set (e.g.: keeping track of unique visitors of a website or generating KPIs from realtime data) and is of particular importance in database systems.
 
@@ -18,7 +22,7 @@ With this approach not only are we able to track the total of distinct elements 
 
 Nevertheless...
 
-##### We have a space problem
+## We have a space problem
 
 ![](http://68.media.tumblr.com/tumblr_mbj1z8XQBI1rxdkjwo1_500.gif)
 
@@ -28,7 +32,7 @@ _So what happens if you can't fit all the elements in memory? You're out of luck
 
 <sub>Spoiler: It's possible if you can sacrifice some accuracy</sub>
 
-##### Probabilistic counting
+## Probabilistic counting
 
 Let's imagine that you told me that you flipped a coin and as a result of it your longest run of heads was 3. Given this I'd say that you probably didn't do that many flips, given that you only achieved 3 heads in a row.
 However if you told me that you got heads 20 times in a row, I'd postulate that you probably did a fair amount of coin flips. This assuming a rough split of 50/50 on the possibility of getting either heads or tails.
@@ -46,7 +50,7 @@ We can extend the same to the binary representation of numbers and say that:
 
 So what's the relevance of all of this?
 
-##### Mathematics to the rescue
+## Mathematics to the rescue
 
 <blockquote>
 Bit-pattern observables: these are based on certain patterns of bits occurring at the beginning of the (binary) S-values. For instance, observing in the stream S at the beginning of a string a bit-pattern 0<sup>{&rho;-1}</sup>1 is more or less a likely indication that the cardinality n of S is at least 2<sup>&rho;</sup>.
@@ -67,7 +71,7 @@ With this in mind two brilliant mathmaticians, Phillip Flajolet and Nigel Martin
 
 - A correction factor &phi; is also applied to the calculation and it's value has been deduced to be &phi; = 0.77351.
 
-##### Enter HyperLogLog
+## Enter HyperLogLog
 
 [HyperLogLog][2] is an algorithm for the aforementioned count-distinct problem that approximates the number of elements on a set.
 
@@ -90,15 +94,15 @@ The relative error of an HyperLogLog has been observed to be **1.04/&radic;<span
 
 So for an HyperLogLog of size 2<sup>20</sup>, it will occupy 1MB of memory and we'll have a relative error of 0.233%.
 
-##### Implementation
+## Implementation
 
 A notable implementation of the HyperLogLog algorithm can be seen in [Redis][5], since it works quite well, while maintaining a small memory footprint.
 
 [This module][6] is a fork from a module by Optimizely, that has some issues fixed, namely it now run on the latest and stable versions of Node.js.
 
-##### Testing it
+## Testing it
 
-###### Data sources
+### Data sources
 
 For these tests I'm using some old logs from a NASA web server that are available [here][1] and [here][2].
 
@@ -110,7 +114,7 @@ n868740.ksc.nasa.gov - - [01/Aug/1995:12:19:45 -0400] "GET /images/MOSAIC-logosm
 
 We'll be using the request path as the unique key of this set.
 
-###### Getting a precise count
+### Getting a precise count
 
 To get a precise count of the unique requests present in the data source I'm using the following:
 
@@ -120,7 +124,7 @@ $ cat corpus/access_log_Jul95 | egrep -o "\"GET .*?\"" | sort -u | wc -l
 
 Which will output the value **22165** and (on my machine) takes around 8 seconds to execute.
 
-###### Getting an estimate using HyperLogLog
+### Getting an estimate using HyperLogLog
 
 For this I'm using an HyperLogLog with 2<sup>16</sup> bytes, reading the corpus file line by line and matching each request line to the same regular expression seen above.
 
@@ -156,7 +160,7 @@ Count: 22144
 Relative Error: 0.40625%
 ```
 
-###### In retrospect
+### In retrospect
 
 We were able to achieve a real error of 0.094%, while only using 64KB of storage.
 
@@ -182,4 +186,4 @@ _This post is also published on the [YLD blog][9]_
 
 [8]: http://ita.ee.lbl.gov/html/contrib/Calgary-HTTP.html
 
-[9]: https://blog.yld.io/2017/04/19/hyperloglog-a-probabilistic-data-structure/
+[9]: https://www.yld.io/blog/hyperloglog-a-probabilistic-data-structure/
