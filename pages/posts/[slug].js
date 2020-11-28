@@ -10,12 +10,8 @@ import PostTitle from '../../components/post-title'
 import Head from 'next/head'
 import { BLOG_TITLE } from '../../lib/constants'
 import markdownToHtml from '../../lib/markdownToHtml'
-import { useAmp } from 'next/amp'
-
-export const config = { amp: 'hybrid' }
 
 export default function Post({ post, morePosts, preview }) {
-  const isAmp = useAmp()
   const router = useRouter()
 
   if (!router.isFallback && !post?.slug) {
