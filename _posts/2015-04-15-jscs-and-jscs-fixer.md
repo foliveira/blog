@@ -1,9 +1,11 @@
 ---
-layout: post
-title: "Using JSCS and jscs-fixer for Atom.io"
-date: "2015-04-15"
-author: Fábio Oliveira
-version: 1.0.4
+title: 'Using JSCS and jscs-fixer for Atom.io'
+excerpt: 'In this post we will take a brief look at JSCS and take a peak at jscs-fixer, an Atom.io package that allows you to automatically apply JSCS code-style rules to your scripts.'
+coverImage: '/assets/blog/jscs-fixer/cover.png'
+date: '2015-04-15T00:00:00.000Z'
+author: 'Fábio Oliveira'
+ogImage:
+  url: '/assets/blog/jscs-fixer/cover.png'
 ---
 
 In this post we'll take a brief look at JSCS and take a peak at jscs-fixer, an Atom.io package that allows you to automatically apply JSCS code-style rules to your scripts.
@@ -26,7 +28,7 @@ There's also a set of preset rules from different companies/projects/teams, the 
 
 As for my personal taste, I usually use it as a [pre-commit hook][nunos-article], to ensure that no one commits and/or pushes code that doesn't conform to the chosen code-style. It helps enforce cohesion with your team or contributors, even more in this last case where you can potentially have dozens of contributions from different developers that could wreak havoc in your project. I also use JSCS directly in my editor, as you will see next.
 
-##JSCS Fixer
+## JSCS Fixer
 
 Being a JSCS user and after reading an [article][addys-article] by [Addy Osmani][addys-profile] on JSCS' new auto-formatting feature and seeing his examples using the SublimeText editor and the SublimeLinter-JSCS plugin, I felt a little left behind since I'm an [Atom][atom-page] editor user.
 
@@ -34,17 +36,19 @@ Although I'm using the great **linter** and **linter-jscs** Atom packages, they 
 
 All things considered, I thought it would be cool if I developed an Atom package that would allow developers to format their scripts based on a project's style guide. Making this package would be the proverbial killing of two birds with one stone. <small>(Please keep in mind that no real birds were killed in the making of jscs-fixer).</small>
 
-###Creating a package
+## Creating a package
 
 First of all, the atom.io documentation pages are great regarding the editor's customisation and the how-to's for creating new themes or packages are also excellent.
 
 I've followed the instructions on [this][atom-docs] page and as quickly as waiting on a new editor window to open, I had my first Atom package skeleton ready for me to hack on it.
 
->#### First-world problems
+
+#### First-world problems
 
 >If you browse through the package source you might not find Coffeescript as it would be expected from the examples provided on the atom.io documentation and from other Atom packages, it isn't that I dislike Coffeescript, but I feel much more comfortable writing "plain" Javascript.
 
-###Meet jscs-fixer
+
+## Meet jscs-fixer
 
 My goal for this package was very simple: it would allow you to format (or fix) a file based on the rules defined on your `.jscsrc` file.
 
@@ -62,11 +66,11 @@ The package can be invoked with one of the following options
 
 I do intend, in the near future, to add a settings view to the package that would allow a user to customise some details like the location of their prefered JSCS installation (either system-wide or project based) or to define the location of a `.jscsrc` or a default preset to use as a fallback.
 
-###Closing notes
+## Closing notes
 
 Of course, this package is open-source and the code can be found in its [repository][github-repo] and the [package page][atom-package], so go ahead and install it and start fixing your scripts automatically from within your editor.
 
-*This post was cross-posted to the YLD! blog [here][yld-crosspost]. Please visit the website and previous posts on the blog.*
+*This post was cross-posted to the YLD blog [here][yld-crosspost]. Please visit the website and previous posts on the blog.*
 
 [jscs-site]: http://jscs.info/
 [feross-standard]: https://github.com/feross/standard/blob/v3.6.0/rc/.eslintrc
@@ -79,4 +83,4 @@ Of course, this package is open-source and the code can be found in its [reposit
 [fix-it-gif]: https://cldup.com/Rmg6zIa3kS.gif
 [github-repo]: https://github.com/foliveira/jscs-fixer
 [atom-package]: https://atom.io/packages/jscs-fixer
-[yld-crosspost]: http://blog.yld.io/2015/04/15/using-jscs-and-jscs-fixer-for-atom/
+[yld-crosspost]: https://www.yld.io/blog/using-jscs-and-jscs-fixer-for-atom-io/
