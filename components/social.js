@@ -1,10 +1,7 @@
-import Image from 'next/image'
-
-export default function Avatar({ name, picture }) {
+export default function Avatar({ url, children }) {
   return (
-    <div className="flex items-center">
-      <Image src={picture} width="80" height="80" className="w-12 h-12 rounded-full mr-4" alt={name} />
-      <div className="text-xl font-bold">{name}</div>
-    </div>
+    <a href={url} className="mx-3 font-bold py-3 px-4 mb-6 lg:mb-0">
+      { children }
+    </a>
   )
 }

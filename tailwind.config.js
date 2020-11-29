@@ -1,15 +1,14 @@
 module.exports = {
   darkMode: 'media',
   purge: ['./components/**/*.js', './pages/**/*.js'],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
+  variants: {
+    typography: ['responsive', 'dark'],
+  },
   theme: {
     extend: {
-      colors: {
-        'accent-1': '#FAFAFA',
-        'accent-2': '#EAEAEA',
-        'accent-7': '#333',
-        success: '#0070f3',
-        cyan: '#79FFE1',
-      },
       spacing: {
         28: '7rem',
       },
@@ -30,5 +29,12 @@ module.exports = {
         medium: '0 8px 30px rgba(0, 0, 0, 0.12)',
       },
     },
+    typography: (theme) => ({
+      dark: {
+        css: {
+          color: theme('colors.gray.50'),
+        }
+      }
+    }),
   },
 }

@@ -26,7 +26,7 @@ export default function Post({ post, morePosts, preview }) {
           <PostTitle>Loading…</PostTitle>
         ) : (
           <>
-            <article className="mb-32">
+            <article className="pb-32">
               <Head>
                 <title>
                   {post.title} | {BLOG_TITLE}

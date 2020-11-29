@@ -12,19 +12,19 @@ In this post we'll take a brief look at JSCS and take a peak at jscs-fixer, an A
 
 ## Enter JSCS
 
-If you don't know JSCS and decide to visit it's website, [jscs.info][jscs-site], you are greeted with the following description:
+If you don't know JSCS and decide to visit its website, [jscs.info][jscs-site], you are greeted with the following description:
 
 > JSCS is a code style linter for programmatically enforcing your style guide. You can configure JSCS for your project in detail using over 90 validation rules, including presets from popular style guides like jQuery, Airbnb, Google, and more.
 
 I love using JSCS, mainly because it is a great way of making sure that all developers on a team are adhering to the same style guide and ensures that no-one gets to make their own choices regarding the code-style being used.
 
-There are a couple of other tools that could be used in this process but they differ from JSCS, mainly:
+There are a couple of other tools that could be used in this process, but they differ from JSCS, mainly:
 
 * JSLint and JSHint, which both focus on ensuring best coding practices but don't offer any way of enforcing a given code-style, and
 
 * ESLint, which allows for people to implement their own style rules. A good example of this would be Feross' **[standard][feross-standard]** module.
 
-There's also a set of preset rules from different companies/projects/teams, the likes of which include Google, Airbnb, the jQuery and Grunt projects, and even a Node.js style guide, that you can use and customise via a .jscsrc file that you include in your project root referencing a preset and your tweaks to it, or even your own set of rules.
+There's also a set of preset rules from different companies/projects/teams, the likes of which include Google, Airbnb, the jQuery and Grunt projects, and even a Node.js style guide, that you can use and customize via a .jscsrc file that you include in your project root referencing a preset and your tweaks to it, or even your own set of rules.
 
 As for my personal taste, I usually use it as a [pre-commit hook][nunos-article], to ensure that no one commits and/or pushes code that doesn't conform to the chosen code-style. It helps enforce cohesion with your team or contributors, even more in this last case where you can potentially have dozens of contributions from different developers that could wreak havoc in your project. I also use JSCS directly in my editor, as you will see next.
 
@@ -38,7 +38,7 @@ All things considered, I thought it would be cool if I developed an Atom package
 
 ## Creating a package
 
-First of all, the atom.io documentation pages are great regarding the editor's customisation and the how-to's for creating new themes or packages are also excellent.
+First, the atom.io documentation pages are great regarding the editor's customization and the how-to's for creating new themes or packages are also excellent.
 
 I've followed the instructions on [this][atom-docs] page and as quickly as waiting on a new editor window to open, I had my first Atom package skeleton ready for me to hack on it.
 
@@ -64,7 +64,7 @@ The package can be invoked with one of the following options
 
 ![fix-it][fix-it-gif]
 
-I do intend, in the near future, to add a settings view to the package that would allow a user to customise some details like the location of their prefered JSCS installation (either system-wide or project based) or to define the location of a `.jscsrc` or a default preset to use as a fallback.
+I do intend, in the near future, to add a settings view to the package that would allow a user to customize some details like the location of their preferred JSCS installation (either system-wide or project based) or to define the location of a `.jscsrc` or a default preset to use as a fallback.
 
 ## Closing notes
 
