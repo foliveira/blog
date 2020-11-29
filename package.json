@@ -1,6 +1,9 @@
 {
   "name": "blog-foliveira-me",
   "version": "1.0.0",
+  "repository": {
+    "url": "https://github.com/foliveira/blog"
+  },
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -19,6 +22,7 @@
     "remark-html": "^10.0.0"
   },
   "devDependencies": {
+    "postcss": "latest",
     "postcss-preset-env": "^6.7.0",
     "tailwindcss": "latest"
   },
