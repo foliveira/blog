@@ -3,11 +3,8 @@ title: 'HyperLogLog'
 excerpt: 'A problem that arises in some applications, mainly in data intensive ones, is how to properly keep track of distinct elements in a finite set and is of particular importance in database systems.'
 coverImage: '/assets/blog/hyperloglog/cover.jpg'
 date: '2017-04-19T00:00:00.000Z'
-author:
-  name: 'Fábio Oliveira'
-  picture: '/assets/blog/authors/fabio.jpeg'
-ogImage:
-  url: '/assets/blog/hyperloglog/cover.jpg'
+author: 'Fábio Oliveira'
+ogImage: '/assets/blog/hyperloglog/cover.jpg'
 ---
 A problem that arises in some applications, mainly in data intensive ones, is how to properly keep track of distinct elements in a finite set (e.g.: keeping track of unique visitors of a website or generating KPIs from real-time data) and is of particular importance in database systems.
 
@@ -24,7 +21,7 @@ Nevertheless...
 
 ## We have a space problem
 
-![](http://68.media.tumblr.com/tumblr_mbj1z8XQBI1rxdkjwo1_500.gif)
+![](//68.media.tumblr.com/tumblr_mbj1z8XQBI1rxdkjwo1_500.gif)
 
 If we want to store a gigantic amount of elements, we'll have a gigantic need for space soon enough, or we'll eventually run out of available space - all because if we want to get an exact cardinality count of a set of elements, we need linear space.
 
@@ -170,20 +167,20 @@ Although the net improvements might not seem much, if we consider that our datas
 
 _This post is also published on the [YLD blog][9]_
 
-[1]: http://www.cs.rmit.edu.au/online/blackboard/chapter/05/documents/contribute/chapter/05/linear-probing.html
+[1]: https://www.cs.rmit.edu.au/online/blackboard/chapter/05/documents/contribute/chapter/05/linear-probing.html
 
-[2]: http://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf
+[2]: https://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf
 
-[3]: http://algo.inria.fr/flajolet/Publications/FlMa85.pdf
+[3]: https://algo.inria.fr/flajolet/Publications/FlMa85.pdf
 
-[4]: http://static.googleusercontent.com/media/research.google.com/en/us/pubs/archive/40671.pdf
+[4]: https://static.googleusercontent.com/media/research.google.com/en/us/pubs/archive/40671.pdf
 
-[5]: http://antirez.com/news/75
+[5]: https://antirez.com/news/75
 
 [6]: https://github.com/foliveira/hyperloglog
 
-[7]: http://ita.ee.lbl.gov/html/contrib/NASA-HTTP.html
+[7]: https://ita.ee.lbl.gov/html/contrib/NASA-HTTP.html
 
-[8]: http://ita.ee.lbl.gov/html/contrib/Calgary-HTTP.html
+[8]: https://ita.ee.lbl.gov/html/contrib/Calgary-HTTP.html
 
 [9]: https://www.yld.io/blog/hyperloglog-a-probabilistic-data-structure/

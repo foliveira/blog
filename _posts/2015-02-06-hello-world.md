@@ -3,11 +3,8 @@ title: 'echo Hello World'
 excerpt: 'And so it all begins. This kind of idea has been brewing in my mind for a long time and now it has flown out of the window.'
 coverImage: '/assets/blog/hello-world/cover.png'
 date: '2015-02-06T00:00:00.000Z'
-author:
-  name: 'Fábio Oliveira'
-  picture: '/assets/blog/authors/fabio.jpeg'
-ogImage:
-  url: '/assets/blog/hello-world/cover.png'
+author: 'Fábio Oliveira'
+ogImage: '/assets/blog/hello-world/cover.png'
 ---
 
 And so it all begins. This kind of idea has been brewing in my mind for a long time and now it has flown out of the window.
