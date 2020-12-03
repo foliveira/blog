@@ -2,7 +2,7 @@ import Container from './container'
 import Social from './social'
 import Copyright from './copyright'
 import { SOCIAL_MEDIA } from '../lib/constants'
-import { FaGithub, FaTwitter, FaLinkedin, FaGitlab, FaUserNinja, FaCreativeCommons, FaCreativeCommonsBy } from 'react-icons/fa';
+import { FaGithub, FaTwitter, FaLinkedin, FaGitlab, FaIdCard } from 'react-icons/fa';
 
 export default function Footer() {
   return (
@@ -11,19 +11,19 @@ export default function Footer() {
         <div className="py-12 flex flex-col lg:flex-row items-stretch justify-between">
           <div className="flex flex-row justify-center items-center">
             <Social url={SOCIAL_MEDIA.twitter}>
-            <FaTwitter size="24px" />
+              <FaTwitter size="24px" />
             </Social>
             <Social url={SOCIAL_MEDIA.github}>
-            <FaGithub size="24px" />
+              <FaGithub size="24px" />
             </Social>
             <Social url={SOCIAL_MEDIA.gitlab}>
-            <FaGitlab size="24px" />
+              <FaGitlab size="24px" />
             </Social>
             <Social url={SOCIAL_MEDIA.linkedin}>
-            <FaLinkedin size="24px" />
+              <FaLinkedin size="24px" />
             </Social>
             <Social url={SOCIAL_MEDIA.website}>
-            <FaUserNinja size="24px" />
+              <FaIdCard size="24px" />
             </Social>
           </div>
           
