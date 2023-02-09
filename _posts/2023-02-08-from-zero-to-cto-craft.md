@@ -7,7 +7,7 @@ author: 'Fábio Oliveira'
 ogImage: '/assets/blog/cto-craft/cover.jpg'
 ---
 
-### Current position: Managing Director
+
 
 ### Short bio (work, background, interests): 
 
@@ -16,7 +16,7 @@ He loves a good fiction book, taking photos of his cats, getting lost in the wil
 
 ### The Interview
 
-#### *CTO Craft*: Hi Fábio, thank you for joining us! Can you tell us about your life before leadership – what kind of roles and projects did you work on?
+#### **CTO Craft**: Hi Fábio, thank you for joining us! Can you tell us about your life before leadership – what kind of roles and projects did you work on?
 
 **Fábio**: Before any leadership role, my career was centred on software engineering, and I’ve managed to work in many industries and verticals, having been involved in projects ranging from geospatial applications to real-time analytics platforms to the more common web platforms that serve millions of customers.
 
@@ -24,7 +24,7 @@ I’ve never been focused on a specific technology during my career, but always 
 
 While at YLD, I’ve had the opportunity to work with numerous other companies, like News UK, which was my last project as a software engineer at YLD – after that, in 2017, I made the transition to leadership, focusing on management and overseeing the growth and success of the company and its teams. These experiences have shaped my career and continue to influence my leadership style and approach.
 
-#### *CC*: How did your first leadership position come about, and was it intentional on your part?
+#### **CC**: How did your first leadership position come about, and was it intentional on your part?
 
 **F**: My transition into a leadership role wasn’t a deliberate choice but a result of my willingness to take on additional responsibilities and a natural progression of my career at YLD. As I’ve mentioned, in 2017 and after having worked in some of our biggest engagements at the time, I felt like I was ready for a new challenge and was very fortunate to have had the opportunity to do so and a team that believed in my capacity to not only grow myself in that role but also help the company grow as a result.
 
@@ -37,21 +37,21 @@ I’ve also continued my education into more management-focused areas, as I felt
 
 My tech background allowed me to bridge the problems with how they’re represented from a technical perspective to arrive at a business solution. I was a technical expert stepping into a leadership role that happened to be in the technology world – my knowledge in software engineering and tech, in general, made it easier to explain things in a simple way and how things should work.
 
-#### *CC* What was your biggest failure in that first leadership role?
+#### **CC**: What was your biggest failure in that first leadership role?
 
 **F**: Improving my communication style has been my constant focus, as it’s important for me to improve how I get through to others. Having said that, one of my biggest failures in getting into a leadership role was not adapting my communication style quickly enough. I realised that as a leader, my actions and decisions now have a greater impact on others, so it was crucial for me to improve how I communicate with my team and ensure they understand the impact of various initiatives. Strengthening my communication skills has been an ongoing focus for me to be an effective leader and a constant source of improvement.
 
-#### *CC* So what made you keep doing it? 
+#### **CC**: So what made you keep doing it? 
 
 **F**: My biggest motivator is seeing what we’ve built at YLD impacts people’s careers positively with what they do daily and how everyone focuses on getting better every single day. I love seeing the growth our people go through, from working for some of the biggest companies in the world, in some of the most advanced technologies and with amazing challenges in front of them. This all then comes together when we see the effect it has in our clients’ organisations, the impact it has on their own teams in terms of growth and also in the way their customers get better service from the work we do.
 
 I get super stoked when I see someone using an application or platform we helped develop!
 
-#### *CC* Can you tell us a fun fact that nobody knows about you?
+#### **CC**: Can you tell us a fun fact that nobody knows about you?
 
 **F**: Growing up, I always had a fascination for maps and geography. In fact, one of my early jobs was in the field of geographical information systems, where I provided mapping solutions to clients. My dad’s frequent work travels also fuelled my interest in pointing out where I thought he was on a map. A good way to distract me for a bit is to put a map in front of me and ask me what year it is from!
 
-#### *CC* What are the three key skills you think every leader needs?
+#### **CC**: What are the three key skills you think every leader needs?
 
 **F**: Good communication, confidence, and ambition are the three key skills I think every leader should focus on developing.
 
@@ -59,7 +59,7 @@ I get super stoked when I see someone using an application or platform we helped
 - Confidence helps in demonstrating conviction in your team, company and decisions, which will inspire others to follow. It also goes hand in hand with being a good communicator, as you can bring that message to others.
 - Ambition is crucial in motivating others and helping the team reach their goals.
 
-#### *CC* What have you learned about acquiring and retaining talent?
+#### **CC**: What have you learned about acquiring and retaining talent?
 
 **F**: To effectively attract and retain talent in today’s world, companies need to put in extra effort to ensure that the entire journey of an employee through the organisation is positive. I believe that this starts even before a potential employee has heard of your company and its brand positioning and involvement in relevant communities and initiatives – I see this as a key point when discussing companies ability to attract talent, as it creates a bond with people through the causes that they care about or are interested in. 
 
@@ -69,7 +69,7 @@ I feel that companies that manage to adapt their benefits to be in line with inc
 
 Overall a positive employee experience can lead to the growth of the employee and the company, and even after an employee leaves, they may continue to have a positive impact on their professional careers and speak highly of their time at the company.
 
-#### *CC* How do you motivate your team and manage their stress levels?
+#### **CC**: How do you motivate your team and manage their stress levels?
 
 As a relaxed leader in the tech world, I think there is no other way to approach this topic other than to focus on creating a positive and productive work environment for my team. This comes into effect by focusing on setting clear objectives and aligning with individuals and the team on how to achieve these goals and being clear about what their responsibilities are. I also encourage a culture of continuous learning and growth by providing opportunities for skill development and innovation. 
 
@@ -84,14 +84,17 @@ The most important factor is to step away from the stressors in my day-to-day an
 
 To boost productivity, I adopt a lean approach to communication and calendar management and make sure to take notes during meetings to stay organised, not just for the moment but also for the future. Remembering that it’s not just about working hard but also working smart will help me stay effective and efficient in the long run.
 
-#### *CC* How do you stay in sync with other parts of the business?
+#### **CC**: How do you stay in sync with other parts of the business?
 
 **F**: I hold regular catch-up sessions with my team to ensure that we’re all on the same page and address any issues that arise. I prioritise open communication so that my team feels comfortable approaching me with any concerns or questions they may have. However, it’s important to maintain a balance and not become overly involved in their day-to-day tasks, as they need room to grow and develop their own problem-solving skills.
 
 Additionally, I also try to stay informed of what’s happening across the organisation through regular check-ins with other departments and cross-functional teams.
 
-#### *CC* What product do you wish you’d invented?
+#### **CC**: What product do you wish you’d invented?
 
-**F**: MerlinID. I enjoy nature, and I like birdwatching during my spare time. It is a fantastic application that started as a knowledge base to identify birds and has since evolved to employ machine learning technics to help to automatically identify birds based on your surroundings, either by description, by analysing a photo or even by hearing for their songs and highlighting which species are singing around you. For every nature lover, it is a powerful piece of technology that helps us connect with the world around us in ways that weren’t possible before.
+**F**: [MerlinID][1]. I enjoy nature, and I like birdwatching during my spare time. It is a fantastic application that started as a knowledge base to identify birds and has since evolved to employ machine learning technics to help to automatically identify birds based on your surroundings, either by description, by analysing a photo or even by hearing for their songs and highlighting which species are singing around you. For every nature lover, it is a powerful piece of technology that helps us connect with the world around us in ways that weren’t possible before.
 
-#### *CC* Thank you, Fábio!
+#### **CC**: Thank you, Fábio!
+
+
+[1]: https://www.allaboutbirds.org/guide/merlin/id
