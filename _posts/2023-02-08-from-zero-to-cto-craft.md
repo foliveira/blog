@@ -7,7 +7,7 @@ author: 'Fábio Oliveira'
 ogImage: '/assets/blog/cto-craft/cover.jpg'
 ---
 
-**This is a crosspost from [Zero to CTO – Fábio Oliveira is in the Spotlight](https://ctocraft.com/blog/zero-to-cto-fabio-oliveira-in-the-spotlight/).**
+**This is a crosspost from [Zero to CTO – Fábio Oliveira is in the Spotlight][1].**
 
 
 ### Short bio (work, background, interests): 
@@ -72,7 +72,7 @@ Overall a positive employee experience can lead to the growth of the employee an
 
 #### **CC: How do you motivate your team and manage their stress levels?**
 
-As a relaxed leader in the tech world, I think there is no other way to approach this topic other than to focus on creating a positive and productive work environment for my team. This comes into effect by focusing on setting clear objectives and aligning with individuals and the team on how to achieve these goals and being clear about what their responsibilities are. I also encourage a culture of continuous learning and growth by providing opportunities for skill development and innovation. 
+**F**: As a relaxed leader in the tech world, I think there is no other way to approach this topic other than to focus on creating a positive and productive work environment for my team. This comes into effect by focusing on setting clear objectives and aligning with individuals and the team on how to achieve these goals and being clear about what their responsibilities are. I also encourage a culture of continuous learning and growth by providing opportunities for skill development and innovation. 
 
 I work to minimise the negative impact of stress by absorbing as much of it as possible for my team to remain focused and effective without distractions. This helps them to maintain a sense of purpose and understand the importance of the work we do, but also to employ the same mentality and approach within their own teams. I also foster a culture of trust and accountability, where people understand what is expected of them and how they can contribute to the overall growth of the company.
 
@@ -93,9 +93,9 @@ Additionally, I also try to stay informed of what’s happening across the organ
 
 #### **CC: What product do you wish you’d invented?**
 
-**F**: [MerlinID][1]. I enjoy nature, and I like birdwatching during my spare time. It is a fantastic application that started as a knowledge base to identify birds and has since evolved to employ machine learning technics to help to automatically identify birds based on your surroundings, either by description, by analysing a photo or even by hearing for their songs and highlighting which species are singing around you. For every nature lover, it is a powerful piece of technology that helps us connect with the world around us in ways that weren’t possible before.
+**F**: [MerlinID][2]. I enjoy nature, and I like birdwatching during my spare time. It is a fantastic application that started as a knowledge base to identify birds and has since evolved to employ machine learning technics to help to automatically identify birds based on your surroundings, either by description, by analysing a photo or even by hearing for their songs and highlighting which species are singing around you. For every nature lover, it is a powerful piece of technology that helps us connect with the world around us in ways that weren’t possible before.
 
 #### **CC: Thank you, Fábio!**
 
-
-[1]: https://www.allaboutbirds.org/guide/merlin/id
+[1]: https://ctocraft.com/blog/zero-to-cto-fabio-oliveira-in-the-spotlight/
+[2]: https://www.allaboutbirds.org/guide/merlin/id
