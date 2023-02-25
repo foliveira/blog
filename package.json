@@ -14,7 +14,7 @@
     "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
     "gray-matter": "^4.0.2",
-    "next": "^10.0.3",
+    "next": "^10.0.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^4.1.0",
