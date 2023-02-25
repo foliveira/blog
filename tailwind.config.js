@@ -1,6 +1,9 @@
 module.exports = {
   darkMode: 'media',
-  purge: ['./components/**/*.js', './pages/**/*.js'],
+  content: [
+    './components/**/*.js', 
+    './pages/**/*.js'
+  ],
   plugins: [
     require('@tailwindcss/typography'),
   ],
