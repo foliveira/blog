@@ -1,10 +1,10 @@
 ---
 title: 'Zero to CTO – Fábio Oliveira is in the Spotlight'
 excerpt: 'Fábio, the Managing Director at YLD, talks about his transition from a software engineer to a leadership role, the challenges he faced, and the skills necessary for effective leadership.'
-coverImage: '/assets/blog/cto-craft/cover.jpg'
+coverImage: '/covers/cto-craft.jpg'
 date: '2023-02-08T00:00:00.000Z'
 author: 'Fábio Oliveira'
-ogImage: '/assets/blog/cto-craft/cover.jpg'
+ogImage: '/covers/cto-craft.jpg'
 ---
 
 **This is a crosspost from [Zero to CTO – Fábio Oliveira is in the Spotlight][1].**

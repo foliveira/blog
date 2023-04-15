@@ -1,10 +1,10 @@
 ---
 title: 'Delivering Value to Clients through the "Strong Opinions, Weakly Held" Approach'
 excerpt: 'Adapting to clients needs and goals to maximise value as a trusted technology partner.'
-coverImage: '/assets/blog/strong-opinions/cover.jpg'
+coverImage: '/covers/strong-opinions.jpg'
 date: '2023-04-12T00:00:00.000Z'
 author: 'Fábio Oliveira'
-ogImage: '/assets/blog/strong-opinions/cover.jpg'
+ogImage: '/covers/strong-opinions.jpg'
 ---
 
 **This is a crosspost from [the YLD blog][1] under the same title.**

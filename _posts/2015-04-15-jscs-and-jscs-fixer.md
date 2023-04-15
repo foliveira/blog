@@ -1,10 +1,10 @@
 ---
 title: 'Using JSCS and jscs-fixer for Atom.io'
 excerpt: 'In this post we will take a brief look at JSCS and take a peak at jscs-fixer, an Atom.io package that allows you to automatically apply JSCS code-style rules to your scripts.'
-coverImage: '/assets/blog/jscs-fixer/cover.png'
+coverImage: '/covers/jscs-fixer.png'
 date: '2015-04-15T00:00:00.000Z'
 author: 'Fábio Oliveira'
-ogImage: '/assets/blog/jscs-fixer/cover.png'
+ogImage: '/covers/jscs-fixer.png'
 ---
 
 In this post we'll take a brief look at JSCS and take a peak at jscs-fixer, an Atom.io package that allows you to automatically apply JSCS code-style rules to your scripts.
