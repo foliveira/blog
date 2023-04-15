@@ -7,8 +7,7 @@ export default function CoverImage({ title, src, slug }) {
       <Image
         src={src}
         fill
-        objectFit="contain"
-        sizes="100vw"
+        sizes="50vw"
         placeholder="blur"
         alt={`Cover Image for ${title}`}
         className={cn('shadow-small', {
