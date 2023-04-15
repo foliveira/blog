@@ -9,6 +9,7 @@ ogImage: '/assets/blog/cto-craft/cover.jpg'
 
 **This is a crosspost from [Zero to CTO – Fábio Oliveira is in the Spotlight][1].**
 
+
 ### Short bio (work, background, interests): 
 
 Fábio is the Managing Director at YLD, leading and developing YLD’s global operations, including its remote engineering teams. Although he is based in sunny Lisbon, Portugal, he has worked on and off in the UK over the last eight years of his career at YLD.  Fabio has an in-depth understanding of the company’s operations and has played a crucial role in delivering successful consulting projects across various different markets and industries.
