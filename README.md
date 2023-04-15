@@ -27,7 +27,7 @@ Some photos on this repository and blog are under the [Unsplash License][4].
 
 If you have any questions or suggestions, feel free to contact [me][3] using my PGP key above.
 
-[1]: https://github.com/foliveira/blog/blob/main/LICENSE
+[1]: https://github.com/foliveira/blog/blob/master/LICENSE
 [2]: https://github.com/foliveira/blog
 [3]: https://keybase.io/foliveira
 [4]: https://unsplash.com/license
