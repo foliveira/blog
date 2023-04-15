@@ -1,10 +1,10 @@
 ---
 title: 'HyperLogLog'
-excerpt: 'A problem that arises in some applications, mainly in data intensive ones, is how to properly keep track of distinct elements in a finite set and is of particular importance in database systems.'
-coverImage: '/assets/blog/hyperloglog/cover.jpg'
+excerpt: 'A problem seen in some applications, mainly in data intensive ones, is how to properly keep track of distinct elements in a finite set and is of particular importance in database systems.'
+coverImage: '/covers/hyperloglog.jpg'
 date: '2017-04-19T00:00:00.000Z'
 author: 'Fábio Oliveira'
-ogImage: '/assets/blog/hyperloglog/cover.jpg'
+ogImage: '/covers/hyperloglog.jpg'
 ---
 A problem that arises in some applications, mainly in data intensive ones, is how to properly keep track of distinct elements in a finite set (e.g.: keeping track of unique visitors of a website or generating KPIs from real-time data) and is of particular importance in database systems.
 
