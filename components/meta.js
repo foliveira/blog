@@ -37,6 +37,7 @@ export default function Meta() {
         content={`${BLOG_TITLE}.`}
       />
       <meta property="og:image" content={HOME_OG_IMAGE_URL} />
+      <link rel="me" href="https://mastodon.social/@foliveira" />
     </Head>
   )
 }
