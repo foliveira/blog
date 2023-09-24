@@ -19,7 +19,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "remark": "^13.0.0",
-    "remark-html": "^15.0.2"
+    "remark-html": "^16.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
