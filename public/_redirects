@@ -1,0 +1,12 @@
+# Redirect site root to the blog subpath
+/       /ira/   301
+/ira    /ira/   301
+
+# Redirect common old top-level paths to the new subpath equivalents
+/posts/*    /ira/posts/:splat   301
+/covers/*   /ira/covers/:splat  301
+/favicon/*  /ira/favicon/:splat  301
+/images/*   /ira/images/:splat  301
+
+# Fallback: send unknown routes to the blog's 404 page
+/*         /ira/404.html        404

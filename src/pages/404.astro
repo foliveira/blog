@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const BASE = "/ira/";
+---
+
+<BaseLayout title="404" description="Page not found">
+    <section aria-labelledby="nf">
+        <p class="caps">404</p>
+        <h1 id="nf">Page not found</h1>
+        <p class="muted">
+            The page you’re looking for doesn’t exist, was moved, or the URL
+            might be incorrect.
+        </p>
+
+        <p style="margin:1rem 0 1.25rem;">
+            <a href={BASE} class="button">Go to Home</a>
+        </p>
+
+        <ul class="list">
+            <li class="list-item">
+                <a href={`${BASE}posts/`}>Browse all posts</a>
+            </li>
+            <li class="list-item">
+                <a href="https://fabioo.live/ira" rel="noopener">Main site</a>
+            </li>
+        </ul>
+    </section>
+
+    <style>
+        .button {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 0.5rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--accent);
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            text-decoration: none;
+            transition:
+                background 0.15s ease,
+                color 0.15s ease;
+        }
+        .button:hover {
+            background: var(--accent-2);
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+</BaseLayout>

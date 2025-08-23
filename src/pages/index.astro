@@ -1,0 +1,69 @@
+---
+const base = "/ira/";
+const target = "/ira/";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="refresh" content={`0;url=${target}`} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Redirecting…</title>
+        <link rel="canonical" href={target} />
+        <style>
+            :root {
+                color-scheme: light dark;
+            }
+            body {
+                margin: 0;
+                padding: 2rem 1rem;
+                font-family:
+                    ui-sans-serif,
+                    system-ui,
+                    -apple-system,
+                    Segoe UI,
+                    Roboto,
+                    Ubuntu,
+                    Cantarell,
+                    Noto Sans,
+                    Helvetica Neue,
+                    Arial;
+                line-height: 1.5;
+            }
+            .wrap {
+                max-width: 720px;
+                margin: 10vh auto 0;
+            }
+            a {
+                color: #0ea5e9;
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            .muted {
+                color: #64748b;
+            }
+            @media (prefers-color-scheme: dark) {
+                body {
+                    background: #0b1020;
+                    color: #e5e7eb;
+                }
+                .muted {
+                    color: #94a3b8;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <h1>Redirecting…</h1>
+            <p class="muted">
+                This site lives under <code>{base}</code>. If you aren’t
+                redirected automatically, use the link below.
+            </p>
+            <p><a href={target}>Go to the blog</a></p>
+        </div>
+    </body>
+</html>

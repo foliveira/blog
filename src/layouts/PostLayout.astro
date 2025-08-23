@@ -1,0 +1,95 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import type { CollectionEntry } from "astro:content";
+
+export interface Props {
+    entry: CollectionEntry<"posts">;
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await entry.render();
+
+const BASE = "/ira/"; // hardcoded base for subpath deploy
+const prefixBase = (p?: string) =>
+    p ? `${BASE}${p.replace(/^\//, "")}` : undefined;
+
+const ogRel = data.ogImage || data.coverImage;
+const ogAbs = ogRel
+    ? Astro.site
+        ? new URL(
+              ogRel.replace(/^\//, ""),
+              new URL(BASE, Astro.site),
+          ).toString()
+        : prefixBase(ogRel)
+    : undefined;
+
+const title = data.title;
+const description = data.description;
+---
+
+<BaseLayout title={title} description={description}>
+    <Fragment slot="head">
+        {ogAbs && <meta property="og:image" content={ogAbs} />}
+    </Fragment>
+
+    <article>
+        <header>
+            <h1>{data.title}</h1>
+            <p class="muted">
+                <time datetime={data.date.toISOString()}>
+                    {
+                        data.date.toLocaleDateString(undefined, {
+                            year: "numeric",
+                            month: "short",
+                            day: "2-digit",
+                        })
+                    }
+                </time>
+                {
+                    data.updated && (
+                        <>
+                            {" · updated "}
+                            <time datetime={data.updated.toISOString()}>
+                                {data.updated.toLocaleDateString(undefined, {
+                                    year: "numeric",
+                                    month: "short",
+                                    day: "2-digit",
+                                })}
+                            </time>
+                        </>
+                    )
+                }
+                {
+                    data.author && (
+                        <>
+                            {" "}
+                            {" · "} {data.author}
+                        </>
+                    )
+                }
+                {
+                    data.tags?.length ? (
+                        <>
+                            {" "}
+                            {" · "} {data.tags.join(", ")}
+                        </>
+                    ) : null
+                }
+            </p>
+
+            {
+                data.coverImage && (
+                    <figure style="margin: 1rem 0 0;">
+                        <img
+                            src={prefixBase(data.coverImage)}
+                            alt={data.title}
+                        />
+                    </figure>
+                )
+            }
+        </header>
+
+        <Content />
+    </article>
+</BaseLayout>

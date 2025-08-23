@@ -1,0 +1,324 @@
+---
+export interface Props {
+    title?: string;
+    description?: string;
+    siteTitle?: string;
+    hideHeader?: boolean;
+}
+
+const {
+    title,
+    description,
+    siteTitle = "blahg-a-tron",
+    hideHeader = false,
+} = Astro.props;
+
+const pageTitle = title ? `${title} · ${siteTitle}` : siteTitle;
+const desc = description ?? "because blog-a-tron was already taken";
+const canonical = Astro.site
+    ? new URL(Astro.url.pathname, Astro.site).toString()
+    : Astro.url.href;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="color-scheme" content="light dark" />
+        <title>{pageTitle}</title>
+        <meta name="description" content={desc} />
+        <link rel="canonical" href={canonical} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={siteTitle} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={desc} />
+        <meta property="og:url" content={canonical} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={desc} />
+
+        <!-- Favicons (served from /public) -->
+        <link rel="icon" href="/ira/favicon/favicon.ico" sizes="any" />
+        <link
+            rel="icon"
+            type="image/png"
+            href="/ira/favicon/favicon-32x32.png"
+            sizes="32x32"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            href="/ira/favicon/favicon-16x16.png"
+            sizes="16x16"
+        />
+        <link rel="apple-touch-icon" href="/ira/favicon/apple-touch-icon.png" />
+        <link rel="manifest" href="/ira/favicon/site.webmanifest" />
+        <link
+            rel="mask-icon"
+            href="/ira/favicon/safari-pinned-tab.svg"
+            color="#38bdf8"
+        />
+        <meta name="msapplication-TileColor" content="#0b1020" />
+
+        <style>
+            :root {
+                --bg: #ffffff;
+                --fg: #0f172a; /* slate-900 */
+                --muted: #475569; /* slate-600 */
+                --border: #e2e8f0; /* slate-200 */
+                --accent: #0ea5e9; /* sky-500 */
+                --accent-2: #38bdf8; /* sky-400 */
+                --radius: 10px;
+
+                /* Code theme variables (Shiki css-variables) */
+                --shiki-color-text: var(--fg);
+                --shiki-color-background: transparent;
+                --shiki-token-string: #16a34a;
+                --shiki-token-comment: #94a3b8;
+                --shiki-token-keyword: #0ea5e9;
+                --shiki-token-function: #f59e0b;
+                --shiki-token-constant: #ef4444;
+            }
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --bg: #0b1020;
+                    --fg: #e5e7eb; /* slate-200 */
+                    --muted: #94a3b8; /* slate-400 */
+                    --border: #1f2937; /* slate-800 */
+                    --accent: #38bdf8;
+                    --accent-2: #7dd3fc;
+                }
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                font-family:
+                    ui-sans-serif,
+                    system-ui,
+                    -apple-system,
+                    Segoe UI,
+                    Roboto,
+                    Ubuntu,
+                    Cantarell,
+                    Noto Sans,
+                    Helvetica Neue,
+                    Arial,
+                    Apple Color Emoji,
+                    Segoe UI Emoji;
+                line-height: 1.65;
+                background: var(--bg);
+                color: var(--fg);
+                text-rendering: optimizeLegibility;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            a {
+                color: var(--accent);
+                text-decoration: none;
+                transition:
+                    color 0.15s ease,
+                    background-color 0.15s ease,
+                    border-color 0.15s ease;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .wrap {
+                max-width: 760px;
+                margin: 0 auto;
+                padding: 2rem 1rem 3rem;
+            }
+
+            /* Header inspired by astro-paper: clean, roomy, typographic */
+            header.site {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                align-items: end;
+                gap: 1rem;
+                padding-bottom: 1.25rem;
+                margin-bottom: 2rem;
+                border-bottom: 1px solid var(--border);
+            }
+            .brand {
+                display: inline-flex;
+                align-items: baseline;
+                gap: 0.75rem;
+            }
+            .brand a.title {
+                font-weight: 800;
+                letter-spacing: 0.2px;
+                font-size: clamp(1.4rem, 3.5vw, 2.25rem);
+                color: var(--fg);
+                text-decoration: none;
+            }
+            .brand .tagline {
+                color: var(--muted);
+                font-weight: 600;
+                font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+            }
+            nav a {
+                color: var(--muted);
+                font-weight: 600;
+                margin-left: 1rem;
+                padding: 0.25rem 0.5rem;
+                border-radius: 6px;
+                border: 1px solid transparent;
+            }
+            nav a:hover {
+                color: var(--accent);
+                text-decoration: none;
+                border-color: var(--border);
+                background: transparent;
+            }
+
+            main {
+                min-height: 40vh;
+            }
+
+            footer.site {
+                margin-top: 3rem;
+                padding-top: 1.5rem;
+                border-top: 1px solid var(--border);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                color: var(--muted);
+                font-size: 0.95rem;
+            }
+
+            /* Typography */
+            h1,
+            h2,
+            h3,
+            h4 {
+                line-height: 1.25;
+                margin: 1.25rem 0 0.5rem;
+            }
+            h1 {
+                font-size: clamp(1.8rem, 4.5vw, 2.4rem);
+            }
+            h2 {
+                font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+            }
+            h3 {
+                font-size: clamp(1.2rem, 3vw, 1.3rem);
+            }
+            p {
+                margin: 0.85rem 0;
+            }
+
+            /* Article content aesthetics like astro-paper */
+            article pre {
+                background: rgba(125, 125, 125, 0.08);
+                border: 1px solid var(--border);
+                padding: 1rem;
+                border-radius: var(--radius);
+                overflow: auto;
+            }
+            article code:not(pre code) {
+                background: rgba(125, 125, 125, 0.12);
+                padding: 0.15rem 0.35rem;
+                border-radius: 4px;
+                font-size: 0.95em;
+            }
+            article blockquote {
+                margin: 1rem 0;
+                padding-left: 1rem;
+                border-left: 3px solid var(--border);
+                color: var(--muted);
+            }
+            article hr {
+                border: 0;
+                border-top: 1px solid var(--border);
+                margin: 2rem 0;
+            }
+
+            /* Cards/list styling alignment with astro-paper’s neatness */
+            .list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            .list-item {
+                padding: 1rem 0;
+                border-bottom: 1px solid var(--border);
+            }
+            .muted {
+                color: var(--muted);
+            }
+            .caps {
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                font-weight: 700;
+                font-size: 0.8rem;
+                color: var(--muted);
+            }
+            .kbd {
+                font-family:
+                    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+                    "Liberation Mono", "Courier New", monospace;
+                border: 1px solid var(--border);
+                border-bottom-width: 2px;
+                padding: 0.05rem 0.35rem;
+                border-radius: 6px;
+                background: rgba(125, 125, 125, 0.06);
+            }
+        </style>
+
+        <slot name="head" />
+    </head>
+    <body>
+        <div class="wrap">
+            {
+                !hideHeader && (
+                    <header class="site" aria-label="Site header">
+                        <div class="brand">
+                            <a class="title" href="/ira/">
+                                {siteTitle}
+                            </a>
+                            <span class="tagline">{desc}</span>
+                        </div>
+                        <nav aria-label="Primary">
+                            <a href="/ira/">Home</a>
+                            <a href="/ira/posts/">Posts</a>
+                            <a href="https://fabioo.live/ira" rel="noopener">
+                                Main site
+                            </a>
+                        </nav>
+                    </header>
+                )
+            }
+
+            <main>
+                <slot />
+            </main>
+
+            <footer class="site" aria-label="Site footer">
+                <div>© {new Date().getFullYear()} · {siteTitle}</div>
+                <div class="muted">
+                    Built with Astro · <a
+                        href="https://github.com/satnaing/astro-paper"
+                        rel="noopener">inspired by astro-paper</a
+                    >
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

@@ -1,5 +1,1 @@
-import '../styles/index.css'
-
-export default function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+// Deprecated: Next.js _app.js is no longer used after migrating to Astro.
