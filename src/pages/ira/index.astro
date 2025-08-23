@@ -7,10 +7,7 @@ const posts = (await getCollection("posts", ({ data }) => !data.draft)).sort(
 );
 ---
 
-<BaseLayout
-    title="blahg-a-tron"
-    description="because blog-a-tron was already taken"
->
+<BaseLayout title="blahg" description="because blog was already taken">
     <section>
         <h1>Latest Posts</h1>
         <ul class="list">
