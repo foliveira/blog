@@ -40,24 +40,24 @@ const canonical = Astro.site
         <meta name="twitter:description" content={desc} />
 
         <!-- Favicons (served from /public) -->
-        <link rel="icon" href="/ira/favicon/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
         <link
             rel="icon"
             type="image/png"
-            href="/ira/favicon/favicon-32x32.png"
+            href="/favicon/favicon-32x32.png"
             sizes="32x32"
         />
         <link
             rel="icon"
             type="image/png"
-            href="/ira/favicon/favicon-16x16.png"
+            href="/favicon/favicon-16x16.png"
             sizes="16x16"
         />
-        <link rel="apple-touch-icon" href="/ira/favicon/apple-touch-icon.png" />
-        <link rel="manifest" href="/ira/favicon/site.webmanifest" />
+        <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+        <link rel="manifest" href="/favicon/site.webmanifest" />
         <link
             rel="mask-icon"
-            href="/ira/favicon/safari-pinned-tab.svg"
+            href="/favicon/safari-pinned-tab.svg"
             color="#38bdf8"
         />
         <meta name="msapplication-TileColor" content="#0b1020" />
@@ -225,29 +225,166 @@ const canonical = Astro.site
             }
 
             /* Article content aesthetics like astro-paper */
+            article {
+                line-height: 1.7;
+            }
+
+            article p {
+                margin: 1.2rem 0;
+                text-align: left;
+            }
+
+            article p:first-of-type {
+                margin-top: 0;
+            }
+
+            article h1,
+            article h2,
+            article h3,
+            article h4,
+            article h5,
+            article h6 {
+                margin: 2.5rem 0 1rem 0;
+                line-height: 1.3;
+                font-weight: 700;
+                letter-spacing: -0.015em;
+            }
+
+            article h1:first-child,
+            article h2:first-child,
+            article h3:first-child {
+                margin-top: 0;
+            }
+
+            article h2 {
+                padding-bottom: 0.5rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            article ul,
+            article ol {
+                margin: 1.2rem 0;
+                padding-left: 1.5rem;
+            }
+
+            article li {
+                margin: 0.5rem 0;
+            }
+
+            article strong {
+                font-weight: 700;
+                color: var(--fg);
+            }
+
+            article em {
+                font-style: italic;
+                color: var(--fg);
+            }
+
+            article a {
+                color: var(--accent);
+                font-weight: 500;
+                text-decoration: underline;
+                text-decoration-color: transparent;
+                text-underline-offset: 0.2em;
+                transition: all 0.2s ease;
+            }
+
+            article a:hover {
+                text-decoration-color: var(--accent);
+                color: var(--accent-2);
+            }
+
             article pre {
                 background: rgba(125, 125, 125, 0.08);
                 border: 1px solid var(--border);
-                padding: 1rem;
+                padding: 1.25rem;
                 border-radius: var(--radius);
                 overflow: auto;
+                margin: 1.5rem 0;
+                font-size: 0.9em;
+                line-height: 1.5;
             }
+
             article code:not(pre code) {
                 background: rgba(125, 125, 125, 0.12);
-                padding: 0.15rem 0.35rem;
+                padding: 0.2rem 0.4rem;
                 border-radius: 4px;
-                font-size: 0.95em;
+                font-size: 0.9em;
+                font-weight: 600;
+                color: var(--fg);
+                border: 1px solid var(--border);
             }
+
             article blockquote {
-                margin: 1rem 0;
-                padding-left: 1rem;
-                border-left: 3px solid var(--border);
+                margin: 2rem 0;
+                padding: 1.25rem 1.5rem;
+                border-left: 4px solid var(--accent);
+                background: rgba(125, 125, 125, 0.04);
+                border-radius: 0 var(--radius) var(--radius) 0;
                 color: var(--muted);
+                font-style: italic;
+                position: relative;
             }
+
+            article blockquote p {
+                margin: 0;
+            }
+
             article hr {
                 border: 0;
                 border-top: 1px solid var(--border);
-                margin: 2rem 0;
+                margin: 3rem 0;
+                opacity: 0.7;
+            }
+
+            article img {
+                border-radius: var(--radius);
+                margin: 1.5rem 0;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }
+
+            article table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 1.5rem 0;
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                overflow: hidden;
+            }
+
+            article th,
+            article td {
+                padding: 0.75rem 1rem;
+                text-align: left;
+                border-bottom: 1px solid var(--border);
+            }
+
+            article th {
+                background: rgba(125, 125, 125, 0.06);
+                font-weight: 600;
+            }
+
+            article tbody tr:hover {
+                background: rgba(125, 125, 125, 0.03);
+            }
+
+            @media (prefers-color-scheme: dark) {
+                article img {
+                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+                }
+
+                article blockquote {
+                    background: rgba(125, 125, 125, 0.06);
+                }
+
+                article th {
+                    background: rgba(125, 125, 125, 0.08);
+                }
+
+                article tbody tr:hover {
+                    background: rgba(125, 125, 125, 0.04);
+                }
             }
 
             /* Cards/list styling alignment with astro-paper’s neatness */
@@ -280,6 +417,18 @@ const canonical = Astro.site
                 border-radius: 6px;
                 background: rgba(125, 125, 125, 0.06);
             }
+
+            .ai-disclosure {
+                cursor: help;
+                text-decoration: underline;
+                text-decoration-style: dotted;
+                text-underline-offset: 0.2em;
+                transition: color 0.2s ease;
+            }
+
+            .ai-disclosure:hover {
+                color: var(--accent);
+            }
         </style>
 
         <slot name="head" />
@@ -290,15 +439,15 @@ const canonical = Astro.site
                 !hideHeader && (
                     <header class="site" aria-label="Site header">
                         <div class="brand">
-                            <a class="title" href="/ira/">
+                            <a class="title" href="/">
                                 {siteTitle}
                             </a>
                             <span class="tagline">{desc}</span>
                         </div>
                         <nav aria-label="Primary">
-                            <a href="/ira/">Home</a>
-                            <a href="/ira/posts/">Posts</a>
-                            <a href="https://fabioo.live/ira" rel="noopener">
+                            <a href="/">Home</a>
+                            <a href="/posts/">Posts</a>
+                            <a href="https://fabioo.live" rel="noopener">
                                 Main site
                             </a>
                         </nav>
@@ -313,9 +462,10 @@ const canonical = Astro.site
             <footer class="site" aria-label="Site footer">
                 <div>© {new Date().getFullYear()} · {siteTitle}</div>
                 <div class="muted">
-                    Built with Astro · <a
-                        href="https://github.com/satnaing/astro-paper"
-                        rel="noopener">inspired by astro-paper</a
+                    Built with Astro · <span
+                        class="ai-disclosure"
+                        title="Research assisted by Perplexity Deep Research; all content and opinions are my own"
+                        >Words are my own</span
                     > · Licensed under <a
                         href="https://creativecommons.org/licenses/by/4.0/"
                         rel="noopener">CC BY 4.0</a
