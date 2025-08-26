@@ -1,69 +1,124 @@
 ---
-const base = "/ira/";
-const target = "/ira/";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("posts", ({ data }) => !data.draft)).sort(
+    (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
 ---
 
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="refresh" content={`0;url=${target}`} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Redirecting…</title>
-        <link rel="canonical" href={target} />
-        <style>
-            :root {
-                color-scheme: light dark;
+<BaseLayout title="blahg" description="because blog was already taken">
+    <section>
+        <h1>Latest Posts</h1>
+        <ul class="post-list">
+            {
+                posts.map((p) => (
+                    <li class="post-item">
+                        <article class="post-preview">
+                            <div class="post-date">
+                                <time datetime={p.data.date.toISOString()}>
+                                    {p.data.date.toLocaleDateString(undefined, {
+                                        year: "numeric",
+                                        month: "short",
+                                        day: "2-digit",
+                                    })}
+                                </time>
+                            </div>
+                            <h3 class="post-title">
+                                <a href={`/posts/${p.slug}`}>{p.data.title}</a>
+                            </h3>
+                            {p.data.description && (
+                                <p class="post-description">
+                                    {p.data.description}
+                                </p>
+                            )}
+                        </article>
+                    </li>
+                ))
             }
-            body {
+        </ul>
+    </section>
+
+    <style>
+        .post-list {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .post-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .post-item:last-child {
+            border-bottom: none;
+        }
+
+        .post-preview {
+            padding: 2rem 0;
+            transition: all 0.2s ease;
+        }
+
+        .post-preview:hover {
+            background: rgba(125, 125, 125, 0.02);
+            margin: 0 -1rem;
+            padding: 2rem 1rem;
+            border-radius: var(--radius);
+        }
+
+        .post-date {
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .post-title {
+            margin: 0 0 0.75rem 0;
+            line-height: 1.3;
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            font-weight: 700;
+        }
+
+        .post-title a {
+            color: var(--fg);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .post-title a:hover {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .post-description {
+            color: var(--muted);
+            margin: 0;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .post-preview:hover {
+                background: rgba(125, 125, 125, 0.04);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .post-preview {
+                padding: 1.5rem 0;
+            }
+
+            .post-preview:hover {
                 margin: 0;
-                padding: 2rem 1rem;
-                font-family:
-                    ui-sans-serif,
-                    system-ui,
-                    -apple-system,
-                    Segoe UI,
-                    Roboto,
-                    Ubuntu,
-                    Cantarell,
-                    Noto Sans,
-                    Helvetica Neue,
-                    Arial;
-                line-height: 1.5;
+                padding: 1.5rem 0;
+                background: none;
             }
-            .wrap {
-                max-width: 720px;
-                margin: 10vh auto 0;
-            }
-            a {
-                color: #0ea5e9;
-                text-decoration: none;
-            }
-            a:hover {
-                text-decoration: underline;
-            }
-            .muted {
-                color: #64748b;
-            }
-            @media (prefers-color-scheme: dark) {
-                body {
-                    background: #0b1020;
-                    color: #e5e7eb;
-                }
-                .muted {
-                    color: #94a3b8;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <div class="wrap">
-            <h1>Redirecting…</h1>
-            <p class="muted">
-                This site lives under <code>{base}</code>. If you aren’t
-                redirected automatically, use the link below.
-            </p>
-            <p><a href={target}>Go to the blog</a></p>
-        </div>
-    </body>
-</html>
+        }
+    </style>
+</BaseLayout>

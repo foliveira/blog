@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "../../../layouts/BaseLayout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
 const posts = (await getCollection("posts", ({ data }) => !data.draft)).sort(
@@ -29,7 +29,7 @@ const posts = (await getCollection("posts", ({ data }) => !data.draft)).sort(
                             </time>
                         </div>
                         <h3 style="margin:.25rem 0;">
-                            <a href={`/ira/posts/${p.slug}`}>{p.data.title}</a>
+                            <a href={`/posts/${p.slug}`}>{p.data.title}</a>
                         </h3>
                         {p.data.description && (
                             <p class="muted" style="margin:.35rem 0 0;">
