@@ -10,17 +10,12 @@ const { entry } = Astro.props;
 const { data } = entry;
 const { Content } = await entry.render();
 
-const BASE = "/ira/"; // hardcoded base for subpath deploy
-const prefixBase = (p?: string) =>
-    p ? `${BASE}${p.replace(/^\//, "")}` : undefined;
+const prefixBase = (p?: string) => p;
 
 const ogRel = data.ogImage || data.coverImage;
 const ogAbs = ogRel
     ? Astro.site
-        ? new URL(
-              ogRel.replace(/^\//, ""),
-              new URL(BASE, Astro.site),
-          ).toString()
+        ? new URL(ogRel.replace(/^\//, ""), Astro.site).toString()
         : prefixBase(ogRel)
     : undefined;
 
@@ -34,9 +29,9 @@ const description = data.description;
     </Fragment>
 
     <article>
-        <header>
-            <h1>{data.title}</h1>
-            <p class="muted">
+        <header class="post-header">
+            <h1 class="post-title">{data.title}</h1>
+            <div class="post-meta">
                 <time datetime={data.date.toISOString()}>
                     {
                         data.date.toLocaleDateString(undefined, {
@@ -49,7 +44,8 @@ const description = data.description;
                 {
                     data.updated && (
                         <>
-                            {" · updated "}
+                            <span class="meta-separator">·</span>
+                            <span class="updated-label">updated</span>
                             <time datetime={data.updated.toISOString()}>
                                 {data.updated.toLocaleDateString(undefined, {
                                     year: "numeric",
@@ -63,24 +59,24 @@ const description = data.description;
                 {
                     data.author && (
                         <>
-                            {" "}
-                            {" · "} {data.author}
+                            <span class="meta-separator">·</span>
+                            <span class="author">{data.author}</span>
                         </>
                     )
                 }
                 {
                     data.tags?.length ? (
                         <>
-                            {" "}
-                            {" · "} {data.tags.join(", ")}
+                            <span class="meta-separator">·</span>
+                            <span class="tags">{data.tags.join(", ")}</span>
                         </>
                     ) : null
                 }
-            </p>
+            </div>
 
             {
                 data.coverImage && (
-                    <figure style="margin: 1rem 0 0;">
+                    <figure class="cover-image">
                         <img
                             src={prefixBase(data.coverImage)}
                             alt={data.title}
@@ -90,6 +86,139 @@ const description = data.description;
             }
         </header>
 
+        {
+            data.description && (
+                <div class="excerpt-callout">
+                    <div class="excerpt-content">
+                        <p>{data.description}</p>
+                    </div>
+                </div>
+            )
+        }
+
         <Content />
     </article>
+
+    <style>
+        .post-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .post-title {
+            margin: 0 0 1rem 0;
+            line-height: 1.2;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        .post-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95em;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-separator {
+            opacity: 0.6;
+        }
+
+        .updated-label {
+            font-style: italic;
+        }
+
+        .author {
+            font-weight: 600;
+        }
+
+        .tags {
+            font-weight: 500;
+            color: var(--accent);
+        }
+
+        .cover-image {
+            margin: 2rem 0 0 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .cover-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .excerpt-callout {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(
+                135deg,
+                rgba(14, 165, 233, 0.08) 0%,
+                rgba(56, 189, 248, 0.06) 100%
+            );
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+            border-radius: var(--radius);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .excerpt-callout::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                var(--accent-2) 50%,
+                transparent 100%
+            );
+            opacity: 0.6;
+        }
+
+        .excerpt-content p {
+            margin: 0;
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: var(--fg);
+            font-weight: 500;
+            text-align: left;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .excerpt-callout {
+                background: linear-gradient(
+                    135deg,
+                    rgba(56, 189, 248, 0.06) 0%,
+                    rgba(125, 211, 252, 0.04) 100%
+                );
+                border-color: var(--border);
+                border-left-color: var(--accent);
+            }
+
+            .cover-image {
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .post-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+
+            .meta-separator {
+                display: none;
+            }
+        }
+    </style>
 </BaseLayout>
