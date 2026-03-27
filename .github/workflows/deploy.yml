@@ -33,7 +33,7 @@ jobs:
           node-version: 22
 
       - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Install Astro (no save)
         run: |
