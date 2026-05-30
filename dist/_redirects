@@ -1,0 +1,6 @@
+/            /ira/              301
+/ira         /ira/              301
+/posts/*     /ira/posts/:splat   301
+/covers/*    /ira/covers/:splat  301
+/favicon/*   /ira/favicon/:splat 301
+/avatar/*    /ira/avatar/:splat  301

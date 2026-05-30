@@ -1,18 +1,18 @@
 {
   "name": "blog-foliveira-me",
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal blog: Markdown posts rendered to static HTML by a zero-dependency Node script.",
   "repository": {
     "url": "https://github.com/foliveira/blog"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "postinstall": "astro sync"
+    "build": "node build.mjs",
+    "serve": "node build.mjs && python3 -m http.server -d dist 8000"
   },
-  "dependencies": {},
-  "devDependencies": {
-    "astro": "^5.13.3"
+  "engines": {
+    "node": ">=18"
   },
   "license": "CC-BY-4.0"
 }
