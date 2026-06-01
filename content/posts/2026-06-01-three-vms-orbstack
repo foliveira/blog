@@ -1,0 +1,169 @@
+---
+title: 'My Three Ubuntu VMs on OrbStack='
+excerpt: 'I wanted three small Linux boxes on my Mac, each with one job, that I could rebuild from a file in about a minute and reach from anywhere.'
+date: '2026-06-01T12:00:00.000Z'
+author: 'Fábio Oliveira'
+---
+
+# Reproducible Ubuntu VMs on macOS with OrbStack, cloud-init and Tailscale
+
+I wanted three small Linux boxes on my Mac, each with one job, that I could rebuild from a file in about a minute and reach from anywhere. A homelab front door, a box for an autonomous agent, and a dev box that configures itself from my dotfiles. This is how I set them up with OrbStack, cloud-init and Tailscale, including the two things that tripped me up along the way.
+
+The three machine definitions are on a gist: **[replace with your gist URL]**. The excerpts below are the parts worth explaining. The full files live there.
+
+## Why OrbStack and not the native stack
+
+OrbStack runs full Linux VMs on macOS, and it is built on Apple's Virtualization.framework, the same hypervisor you would reach for going native. So picking it over the raw framework is not a decision about the engine. It is a decision about everything wrapped around the engine: a one-line machine create, cloud-init support, ports that show up on the Mac with no forwarding rules, `*.orb.local` hostnames, a built-in SSH server, and file sharing both ways. Rebuilding that by hand, or against the framework in Swift, is a project in itself.
+
+The honest caveat is the licence. OrbStack is free for personal, non-commercial use under ten thousand dollars a year of related income. Commercial, freelance, business or government use needs a paid licence, currently eight dollars per user per month, after a thirty-day trial. A hobby homelab sits in the free tier. Work machines do not, so factor that in. If the fee is a problem, Lima is the closest free alternative and takes a similar cloud-init style config, with less polish.
+
+## The three machines
+
+Each box does one thing:
+
+- `homelab` runs Docker and a Caddy reverse proxy on port 80, the single entry point for whatever I put behind it.
+- `agent` runs Hermes Agent, the self-improving agent from Nous Research, talking to a remote model so the box needs no GPU.
+- `dev` clones my public dotfiles repo and runs its install script, which pulls in the rest of my tooling.
+
+## Provisioning with cloud-init
+
+OrbStack takes a cloud-init user-data file at create time with `-c` or `--user-data`, the same format as EC2 and most other clouds. That is the whole reproducibility story: the machine is defined by a file, not by whatever I typed into it after the fact.
+
+The current Ubuntu LTS is 26.04 (Resolute Raccoon). I pin it, with 24.04 (Noble) as a fallback if OrbStack has not pulled the newer image yet:
+
+```bash
+UBUNTU=ubuntu:resolute   # or ubuntu:noble for 24.04 LTS
+
+orb create $UBUNTU homelab --user-data homelab.cloud-init.yaml
+orb create $UBUNTU agent   --user-data agent.cloud-init.yaml
+orb create $UBUNTU dev     --user-data dev.cloud-init.yaml
+```
+
+Watch a machine finish provisioning, and read the full log if something fails:
+
+```bash
+orb -m homelab cloud-init status --long
+orb -m homelab cat /var/log/cloud-init-output.log
+```
+
+The homelab file installs Docker and writes a Caddyfile and a compose file. The dev file clones the dotfiles repo and applies it as my user, into my home directory, so ownership and paths come out right:
+
+```yaml
+runcmd:
+  - curl -fsSL https://tailscale.com/install.sh | sh
+  - |
+    set -e
+    DOTFILES_REPO="https://github.com/YOURUSER/dotfiles.git"
+    APPLY_CMD="./install.sh"
+    U="$(getent passwd | awk -F: '$3>=500 && $3<60000 && $1!="nobody"{print $1; exit}')"
+    H="$(getent passwd "$U" | cut -d: -f6)"
+    sudo -u "$U" -H git clone "$DOTFILES_REPO" "$H/.dotfiles"
+    sudo -u "$U" -H bash -lc "cd '$H/.dotfiles' && $APPLY_CMD"
+```
+
+The agent box is the exception to full automation. Hermes installs per-user and its setup runs a browser OAuth, so cloud-init only installs it. You finish the setup by hand once the machine is up:
+
+```bash
+orb -m agent
+curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
+exec $SHELL -l
+hermes setup --portal   # one OAuth for a model plus web search, image gen, TTS, browser
+hermes
+```
+
+## Port 80 to the host, with no forwarding rules
+
+This is the part that surprised me. OrbStack forwards any port a Linux machine listens on straight through to the Mac on the same port number. There is no rule to write. Caddy listens on `:80` inside the homelab VM, so:
+
+- `http://localhost` on the Mac hits the homelab box
+- `http://homelab.orb.local` works too, and OrbStack detects the web port so you do not need `:80`
+- other devices on the LAN reach it at the Mac's IP, because Caddy binds `0.0.0.0`
+
+The Caddyfile starts as a stub I extend as I add services behind it:
+
+```
+:80 {
+	respond "homelab up"
+
+	# handle_path /grafana* {
+	# 	reverse_proxy grafana:3000
+	# }
+}
+```
+
+The only thing to watch is that nothing else on the Mac already holds port 80, and that only one machine listens on it, or the mapping to `localhost:80` is ambiguous. To check it after the box is up:
+
+```bash
+curl localhost           # -> homelab up
+curl homelab.orb.local   # -> homelab up
+```
+
+## The sudo password that never existed
+
+First snag. I went to `sudo` something inside a machine, typed my macOS password, and it failed. Then it kept failing.
+
+The reason is that OrbStack creates a Linux user named after your macOS account but leaves it with no password, and your macOS password does not carry into the VM. By default sudo is passwordless via a rule in `/etc/sudoers.d/orbstack`, so you never notice. The moment that rule is gone, or you have a custom user without a NOPASSWD entry, sudo starts prompting for a password the account does not have. Nothing you type can match.
+
+The way out is direct root, which OrbStack gives you with no password:
+
+```bash
+orb -m homelab -u root   # logs in as root, no password
+passwd yourusername      # set the VM user's password
+```
+
+After that, `sudo` inside the machine takes the password you just set. If you would rather have no sudo password at all, which is OrbStack's default, recreate the passwordless rule instead of setting a password:
+
+```bash
+orb -m homelab -u root
+echo 'yourusername ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/orbstack
+chmod 440 /etc/sudoers.d/orbstack
+```
+
+Each machine is independent, so do this per box.
+
+## Tailscale on all three
+
+I want to reach these boxes from my phone and laptop without exposing ports, so each one joins my tailnet. OrbStack machines are full VMs with a real kernel, which matters here: Tailscale uses the normal `/dev/net/tun` path and needs none of the userspace-networking workarounds that container runtimes force on you.
+
+Each cloud-init file installs Tailscale and stops there:
+
+```yaml
+runcmd:
+  - curl -fsSL https://tailscale.com/install.sh | sh
+```
+
+The deliberate choice is to keep the auth key out of every file. The files are reproducible and shareable precisely because they hold no secrets. I bring each node up as a post-create step, with the key read from 1Password on the command line so it never lands on disk:
+
+```bash
+KEY="$(op read 'op://Private/Tailscale/authkey')"
+
+orb -m homelab -u root tailscale up --auth-key="$KEY" --hostname=homelab
+orb -m agent   -u root tailscale up --auth-key="$KEY" --hostname=agent --ssh
+orb -m dev     -u root tailscale up --auth-key="$KEY" --hostname=dev   --ssh
+```
+
+A few decisions in there:
+
+Generate one reusable, pre-authorised key in the admin console and reuse it for all three. Tag it (something like `tag:homelab`) so the nodes are owned by the tag, not your personal login, which keeps ACLs and key expiry sane for servers. Reusable keys are powerful, so keep them in a vault. 1Password covers that.
+
+Do not make the key ephemeral. Ephemeral nodes auto-remove from the tailnet shortly after going offline, and OrbStack stops machines when they are idle, so ephemeral nodes would keep disappearing. You want persistent nodes here.
+
+`--ssh` turns on Tailscale SSH, so I can shell into the dev and agent boxes from anywhere on the tailnet without opening a port. I leave it off the homelab box, since that one is a web front door, but it is one flag away if you want it.
+
+If you ever want the homelab box to act as an exit node or advertise its Docker subnet, that needs IP forwarding via a sysctl drop-in, then `tailscale up --advertise-exit-node` or `--advertise-routes=`. I have left that out to keep the boxes lean.
+
+## Putting it together
+
+Start to finish, per machine: one `orb create` with the right cloud-init file, then one `tailscale up`. The agent box adds the manual Hermes setup, and the dev box needs its two lines edited (the repo URL and the apply command) before you create it.
+
+```bash
+UBUNTU=ubuntu:resolute
+KEY="$(op read 'op://Private/Tailscale/authkey')"
+
+for m in homelab agent dev; do
+  orb create $UBUNTU $m --user-data $m.cloud-init.yaml
+  orb -m $m -u root tailscale up --auth-key="$KEY" --hostname=$m
+done
+```
+
+The whole thing rebuilds from three files and a couple of commands, which was the point. When a box gets into a strange state I delete it and recreate it rather than debug it. The files are on the gist linked at the top. Take them and change the machine names, the dotfiles repo and the Tailscale key source to suit yours.
