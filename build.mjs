@@ -22,7 +22,7 @@ const SITE = "https://blog.fabioo.live";
 const SITE_TITLE = "Off the Main Thread";
 const TAGLINE = "Notes on software, leadership, and the occasional tangent.";
 const AUTHOR = "Fábio Oliveira";
-const AUTHOR_URL = "https://fabioo.live";
+const AUTHOR_URL = "https://fabioo.live/ira";
 const AUTHOR_SAMEAS = [
   "https://github.com/foliveira",
   "https://keybase.io/foliveira",
